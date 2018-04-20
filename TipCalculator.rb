@@ -82,6 +82,8 @@ tcp = TipCalculator.new('£') #new object of the tipcalculator class
 # tcd = TipCalculator.new('$') #the currency is the state of the class
 tcp.first_question #call the funtion
 
-
+puts "The bill amount is #{bill_amount}"
+puts "The tip amount is #{(bill_amount * (tip_rate1 / 100)).round(2)}"
+puts "The total to pay is #{(bill_amount + (bill_amount * (tip_rate1 / 100))).round(2)}."
 
 #first_question
