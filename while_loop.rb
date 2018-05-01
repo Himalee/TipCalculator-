@@ -1,13 +1,20 @@
+class TipCalculator
+
+def initialize(currency)
+  @currency = currency
+end
+
 def first_question
 puts "What is the bill amount?"
 
 while @bill_amount = gets.chomp
   case @bill_amount
-  when /\D/
-    puts "Please enter a positive amount"
+  when /\D/# when any character apart from an integer is entered. How to include another reg exp
+    puts "Please enter a positive amount?"
   else
     second_question
   end
+  break if @bill_amount == "quit" # Can there be 2 reg exp?
 end
 end
 
@@ -21,6 +28,7 @@ while @tip_amount = gets.chomp
   else
     output
   end
+  break if @bill_amount == "quit"
 end
 end
 
@@ -36,18 +44,17 @@ def grand_total
   sub_total + tip_amount
 end
 
-def currency
-  "£"
-end
-
 def output
-  puts "This bill amount is #{currency}#{sub_total}"
-  puts "The tip amount is #{currency}#{tip_amount}"
-  puts "The total to pay is #{currency}#{grand_total}"
+  puts "This bill amount is #{@currency}#{sub_total}"
+  puts "The tip amount is #{@currency}#{tip_amount}"
+  puts "The total to pay is #{@currency}#{grand_total}"
   first_question
 end
 
-first_question
+end
+
+tpc = TipCalculator.new("£")
+tpc.first_question
 
 
 # prompt = "> "
