@@ -1,55 +1,55 @@
 class TipCalculator
 
-def initialize(currency)
-  @currency = currency
-end
-
-def first_question
-puts "What is the bill amount?"
-
-while @bill_amount = gets.chomp
-  case @bill_amount
-  when /\D/# when any character apart from an integer is entered. How to include another reg exp
-    puts "Please enter a positive amount?"
-  else
-    second_question
+  def initialize(currency)
+    @currency = currency
   end
-  break if @bill_amount == "quit" # Can there be 2 reg exp?
-end
-end
 
-def second_question
-puts "What is the tip percentage?"
+  def first_question
+    puts "What is the bill amount?"
 
-while @tip_amount = gets.chomp
-  case @tip_amount
-  when /\D/
-    puts "Please enter a positive amount"
-  else
-    output
+    while @bill_amount = gets.chomp
+      case @bill_amount
+      when /\D/# when any character apart from an integer is entered. How to include another reg exp
+        puts "Please enter a positive amount?"
+      else
+        second_question
+      end
+      break if @bill_amount == "quit" # Can there be 2 reg exp?
+    end
   end
-  break if @bill_amount == "quit"
-end
-end
 
-def sub_total
-  (@bill_amount.to_f).round(2)
-end
+  def second_question
+    puts "What is the tip percentage?"
 
-def tip_amount
-  (@bill_amount.to_f * (@tip_rate.to_f / 100)).round(2)
-end
+    while @tip_amount = gets.chomp
+      case @tip_amount
+      when /\D/
+        puts "Please enter a positive amount"
+      else
+        output
+      end
+      break if @bill_amount == "quit"
+    end
+  end
 
-def grand_total
-  sub_total + tip_amount
-end
+  def sub_total
+    (@bill_amount.to_f).round(2)
+  end
 
-def output
-  puts "This bill amount is #{@currency}#{sub_total}"
-  puts "The tip amount is #{@currency}#{tip_amount}"
-  puts "The total to pay is #{@currency}#{grand_total}"
-  first_question
-end
+  def tip_amount
+    (@bill_amount.to_f * (@tip_rate.to_f / 100)).round(2)
+  end
+
+  def grand_total
+    sub_total + tip_amount
+  end
+
+  def output
+    puts "This bill amount is #{@currency}#{sub_total}"
+    puts "The tip amount is #{@currency}#{tip_amount}"
+    puts "The total to pay is #{@currency}#{grand_total}"
+    first_question
+  end
 
 end
 
